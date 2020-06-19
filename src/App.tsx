@@ -6,7 +6,10 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Layout from 'components/Layout';
+import Tags from './views/Tags';
+import Bills from './views/Bills';
+import Statistics from './views/Statistics';
+import NoMatch from './views/NoMatch';
 
 function App() {
   return (
@@ -28,33 +31,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
-
-function Tags() {
-  return (
-    <Layout>
-      <h2>Tags</h2>
-    </Layout>
-  );
-}
-
-function Bills() {
-  return (
-    <Layout>
-      <h2>Bills</h2>
-    </Layout>
-  );
-}
-
-function Statistics() {
-  return (
-    <Layout>
-      <h2>Statistics</h2>
-    </Layout>
-  );
-}
-function NoMatch() {
-  return <h2>页面不存在</h2>;
 }
 
 export default App;
