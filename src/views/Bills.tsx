@@ -15,15 +15,8 @@ const Bills = () => {
   return (
     <BillsLayout>
       <TagsSection/>
-      <RemarkSection>
-
-      </RemarkSection>
-      <CategorySection>
-        <ul>
-          <li className="selected">支出</li>
-          <li>收入</li>
-        </ul>
-      </CategorySection>
+      <RemarkSection/>
+      <CategorySection/>
       <NumbersSection>
         <div className="output">
           100
