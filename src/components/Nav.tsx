@@ -4,6 +4,7 @@ import React from 'react';
 import Icon from './Icon';
 
 const NavWrapper = styled.div`
+  background-color: #FFFFFF;
   > ul {
     display: flex;
     > li {
