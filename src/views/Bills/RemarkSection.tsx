@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import React, {useRef, useState} from 'react';
 
-const RemarkSection = styled.section`
+const Wrapper = styled.section`
   padding: 0 16px;
   display: flex;
   align-items: center;
@@ -18,5 +19,28 @@ const RemarkSection = styled.section`
     width: 100%;
   }
 `;
+
+const RemarkSection: React.FC = () => {
+  const [remark, setRemark] = useState<string>('');
+  const refInput = useRef<HTMLInputElement>(null)
+  const onBlur = () => {
+    if (refInput.current !== null) {
+      setRemark(refInput.current.value);
+    }
+  }
+
+  return (
+    <Wrapper>
+      <label>备注</label>
+      <input
+        type="text"
+        placeholder="在这里添加备注"
+        ref={refInput}
+        defaultValue={remark}
+        onBlur={onBlur}
+      />
+    </Wrapper>
+  )
+};
 
 export {RemarkSection};

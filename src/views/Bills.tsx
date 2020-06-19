@@ -16,8 +16,7 @@ const Bills = () => {
     <BillsLayout>
       <TagsSection/>
       <RemarkSection>
-        <label>备注</label>
-        <input type="text" placeholder="在这里添加备注"/>
+
       </RemarkSection>
       <CategorySection>
         <ul>
