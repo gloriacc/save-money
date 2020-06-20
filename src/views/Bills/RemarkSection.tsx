@@ -20,15 +20,19 @@ const Wrapper = styled.section`
   }
 `;
 
-const RemarkSection: React.FC = () => {
-  const [remark, setRemark] = useState<string>('');
+type Props = {
+  value: string,
+  onChange: (value:string)=>void
+}
+
+const RemarkSection: React.FC<Props> = (props) => {
+  const remark = props.value;
   const refInput = useRef<HTMLInputElement>(null)
   const onBlur = () => {
     if (refInput.current !== null) {
-      setRemark(refInput.current.value);
+      props.onChange(refInput.current.value);
     }
   }
-
   return (
     <Wrapper>
       <label>备注</label>
@@ -42,5 +46,4 @@ const RemarkSection: React.FC = () => {
     </Wrapper>
   )
 };
-
 export {RemarkSection};
