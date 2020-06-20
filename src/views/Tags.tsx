@@ -3,6 +3,7 @@ import React from 'react';
 import {useTags} from '../useTags';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import {Button} from '../components/Button';
 
 const TagList = styled.ul`
   background: #FFF;
@@ -19,12 +20,6 @@ const TagList = styled.ul`
       align-items: center;
     }
   }
-`;
-
-const Button = styled.button`
-  font-size: 18px;
-  border: none;
-  padding: 8px 12px;
 `;
 
 const Center = styled.div`
