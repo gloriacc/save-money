@@ -10,22 +10,26 @@ import Tags from './views/Tags';
 import Bills from './views/Bills';
 import Statistics from './views/Statistics';
 import NoMatch from './views/NoMatch';
+import {Tag} from './views/Tag';
 
 function App() {
   return (
     <Router>
       <Switch>
         <Redirect exact from="/" to="/bills"/>
-        <Route path="/tags">
+        <Route exact path="/tags">
           <Tags />
         </Route>
-        <Route path="/bills">
+        <Route exact path="/tags/:tag">
+          <Tag />
+        </Route>
+        <Route exact path="/bills">
           <Bills />
         </Route>
-        <Route path="/statistics">
+        <Route exact path="/statistics">
           <Statistics />
         </Route>
-        <Route path="*">
+        <Route exact path="*">
           <NoMatch />
         </Route>
       </Switch>

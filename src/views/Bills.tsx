@@ -16,7 +16,7 @@ type Category = '-' | '+';
 
 const Bills = () => {
   const [value, setValue] = useState({
-    tags: [] as string[],
+    tagIds: [] as number[],
     remark: '',
     category: '-' as Category,
     amount: 0
@@ -26,12 +26,8 @@ const Bills = () => {
   };
   return (
     <BillsLayout>
-      {value.tags.join(',')}
-      {value.remark}
-      {value.category}
-      {value.amount}
-      <TagsSection value={value.tags}
-                   onChange={(tags)=>onChange({tags})}/>
+      <TagsSection value={value.tagIds}
+                   onChange={(tagIds)=>onChange({tagIds})}/>
       <RemarkSection value={value.remark}
                      onChange={(remark)=>onChange({remark})}/>
       <CategorySection value={value.category}
