@@ -30,7 +30,7 @@ const Center = styled.div`
 `;
 
 const Tags = () => {
-  const {tags, setTags} = useTags();
+  const {tags, addTag} = useTags();
   return (
     <Layout>
       <TagList>
@@ -41,9 +41,8 @@ const Tags = () => {
         ))}
       </TagList>
       <Center>
-        <Button>新建标签</Button>
+        <Button onClick={addTag}>新建标签</Button>
       </Center>
-
     </Layout>
   );
 }
