@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {ChangeEventHandler} from 'react';
 import {useTags} from '../useTags';
 import {useParams} from 'react-router-dom';
 import Layout from '../components/Layout';
 import Icon from '../components/Icon';
 import styled from 'styled-components';
 import {Button} from '../components/Button';
+import {Input} from '../components/Input';
 
 const Header = styled.header`
   font-size: 16px;
@@ -19,6 +20,18 @@ const Header = styled.header`
     align-items: center;
     left: 22px;
   }
+`;
+
+const InputWrapper = styled.div`
+  background: #FFF;
+  margin-top: 8px;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 0;
 `;
 
 type Params = {
@@ -37,16 +50,12 @@ const Tag: React.FC = () => {
           </div>
           <span>编辑标签</span>
         </Header>
-        <div>
-          <label>标签名</label>
-          <input
-            type="text"
-            placeholder="在这里添加标签名"
-          />
-        </div>
-        <div>
+        <InputWrapper>
+          <Input label="标签名" type="text" placeholder="在这里添加标签名" defaultValue={tag.name}/>
+        </InputWrapper>
+        <ButtonWrapper>
           <Button>删除标签</Button>
-        </div>
+        </ButtonWrapper>
 
       </div>
     </Layout>

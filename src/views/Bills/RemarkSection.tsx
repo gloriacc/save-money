@@ -1,23 +1,9 @@
 import styled from 'styled-components';
-import React, {useRef} from 'react';
+import React, {ChangeEventHandler, useRef} from 'react';
+import {Input} from '../../components/Input';
 
 const Wrapper = styled.section`
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  > label {
-    color: #333;
-    margin-right: 16px;
-    white-space: nowrap;
-    line-height: 72px;
-  }
-  > input {
-    display: block;
-    background: none;
-    border: none;
-    outline: none;
-    width: 100%;
-  }
+  padding: 8px 0;
 `;
 
 type Props = {
@@ -27,22 +13,12 @@ type Props = {
 
 const RemarkSection: React.FC<Props> = (props) => {
   const remark = props.value;
-  const refInput = useRef<HTMLInputElement>(null)
-  const onBlur = () => {
-    if (refInput.current !== null) {
-      props.onChange(refInput.current.value);
-    }
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    props.onChange(e.target.value);
   }
   return (
     <Wrapper>
-      <label>备注</label>
-      <input
-        type="text"
-        placeholder="在这里添加备注"
-        ref={refInput}
-        defaultValue={remark}
-        onBlur={onBlur}
-      />
+      <Input label="备注" placeholder="在这里添加备注" value={remark} onChange={onChange}/>
     </Wrapper>
   )
 };
