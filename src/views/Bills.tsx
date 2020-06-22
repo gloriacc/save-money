@@ -5,6 +5,7 @@ import {TagsSection} from './Bills/TagsSelection';
 import {RemarkSection} from './Bills/RemarkSection';
 import {CategorySection} from './Bills/CategorySection';
 import {NumbersSection} from './Bills/NumbersSection';
+import {useBillRecords} from '../hooks/useBillRecords';
 
 
 const BillsLayout = styled(Layout)`
@@ -14,15 +15,24 @@ const BillsLayout = styled(Layout)`
 
 type Category = '-' | '+';
 
+const defaultBillRecord = {
+  tagIds: [] as number[],
+  remark: '',
+  category: '-' as Category,
+  amount: 0
+}
+
 const Bills = () => {
-  const [value, setValue] = useState({
-    tagIds: [] as number[],
-    remark: '',
-    category: '-' as Category,
-    amount: 0
-  });
+  const [value, setValue] = useState(defaultBillRecord);
+  const {addBillRecord} = useBillRecords();
   const onChange = (obj: Partial<typeof value>) => {
     setValue({...value,...obj});
+  };
+  const submit = () => {
+    if (addBillRecord(value)) {
+      alert('保存成功');
+      setValue(defaultBillRecord);
+    }
   };
   return (
     <BillsLayout>
@@ -34,7 +44,7 @@ const Bills = () => {
                        onChange={(category)=>onChange({category})}/>
       <NumbersSection value={value.amount}
                       onChange={(amount)=>onChange({amount})}
-                      onOk={()=>{}}/>
+                      onOk={()=>{submit()}}/>
     </BillsLayout>
   );
 }
