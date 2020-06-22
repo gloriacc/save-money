@@ -33,7 +33,7 @@ const Statistics = () => {
   const {getTagName} = useTags();
   const hash: {[k: string]: BillRecord[]} = {};
   const billRecordsByCategory = billRecords.filter(br => br.category === category);
-  billRecordsByCategory.map(br => {
+  billRecordsByCategory.forEach(br => {
     const key = day (br.createdDate).format('YYYY-MM-DD');
     if (!(key in hash)) {
       hash[key] = [];
@@ -51,15 +51,15 @@ const Statistics = () => {
       <CategoryWrapper>
         <CategorySection value={category} onChange={value => setCategory(value)}/>
       </CategoryWrapper>
-      {sortedBillRecords.map(([date, brs]) => <div>
+      {sortedBillRecords.map(([date, brs]) => <div key={date}>
         <Header>
           {date}
         </Header>
         <div>
           {brs.map(br => {
-            return <Item>
+            return <Item key={Math.random()}>
               {br.tagIds
-                .map(tagId => <span>{getTagName(tagId)}</span>)
+                .map(tagId => <span key={tagId}>{getTagName(tagId)}</span>)
                 .reduce((result, span, index, array) => result.concat(index < array.length - 1 ? [span, '，'] : [span]), [] as ReactNode[])
               }
               <div className="remark">{br.remark ? br.remark : ''}</div>

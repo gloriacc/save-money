@@ -31,7 +31,7 @@ const NumbersSection: React.FC<Props> = (props) => {
       props.onOk();
       return;
     }
-    if ('1234567890.'.split('').concat(['删除', '清空']).indexOf(text)) {
+    if ('0123456789.'.split('').concat(['删除', '清空']).indexOf(text)>=0) {
       setOutput(calcOutput(text, output));
     }
   }

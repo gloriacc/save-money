@@ -31,7 +31,7 @@ const useBillRecords = () => {
   };
   useUpdate(() => {
     window.localStorage.setItem('billRecords', JSON.stringify(billRecords));
-  }, [billRecords]);
+  }, billRecords);
   return {billRecords, addBillRecord};
 };
 export {useBillRecords};

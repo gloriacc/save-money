@@ -16,7 +16,7 @@ const useTags = () => {
     }
     setTags(localTags);
   }, [])
-  useUpdate(() => {window.localStorage.setItem('tags', JSON.stringify(tags));}, [tags]);
+  useUpdate(() => {window.localStorage.setItem('tags', JSON.stringify(tags));}, tags);
   const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
   const updateTag = (id: number, obj:{name: string}) => {
     setTags(tags.map(tag => tag.id === id ? {id, name: obj.name} : tag));
