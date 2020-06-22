@@ -44,7 +44,7 @@ const Bills = () => {
                        onChange={(category)=>onChange({category})}/>
       <NumbersSection value={value.amount}
                       onChange={(amount)=>onChange({amount})}
-                      onOk={()=>{submit()}}/>
+                      onOk={submit}/>
     </BillsLayout>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Wrapper} from './NumbersSection/Wrapper';
 import {calcOutput} from './NumbersSection/calcOutput';
 
@@ -9,17 +9,18 @@ type Props = {
 }
 
 const NumbersSection: React.FC<Props> = (props) => {
-  const output = props.value.toString();
+  const [output, _setOutput] = useState(props.value.toString());
   const setOutput = (output: string) => {
-    let amount
+    let amount: string;
     if (output.length > 16) {
-      amount = parseFloat(output.slice(0, 16));
+      amount = output.slice(0, 16);
     } else if (output.length === 0) {
-      amount = 0;
+      amount = '0';
     } else {
-      amount = parseFloat(output);
+      amount = output;
     }
-    props.onChange(amount);
+    _setOutput(amount);
+    props.onChange(parseFloat(amount));
   };
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as  HTMLButtonElement).textContent;
@@ -30,7 +31,7 @@ const NumbersSection: React.FC<Props> = (props) => {
       props.onOk();
       return;
     }
-    if ('0123456789.'.split('').concat(['删除', '清空']).indexOf(text)) {
+    if ('1234567890.'.split('').concat(['删除', '清空']).indexOf(text)) {
       setOutput(calcOutput(text, output));
     }
   }

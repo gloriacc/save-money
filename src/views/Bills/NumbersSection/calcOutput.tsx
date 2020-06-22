@@ -13,6 +13,7 @@ const calcOutput = (text: string, output: string) => {
       if (output === '0'){
         return text;
       } else {
+
         return output + text;
       }
     case '.':
