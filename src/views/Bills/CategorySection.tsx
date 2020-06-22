@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, {useState} from 'react';
 
 const Wrapper = styled.section`
-  background: #C4C4C4;
   > ul {
     display: flex;
    > li {

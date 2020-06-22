@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useUpdate} from './useUpdate';
 
-type BillRecord = {
+export type BillRecord = {
   tagIds: number[],
   remark: string,
   category: '-' | '+',

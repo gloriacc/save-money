@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Tags from './views/Tags';
 import Bills from './views/Bills';
-import Statistics from './views/Statistics';
+import {Statistics} from './views/Statistics';
 import NoMatch from './views/NoMatch';
 import {Tag} from './views/Tag';
 

@@ -30,6 +30,9 @@ const useTags = () => {
       setTags([...tags, {id: createId(), name: newTagName}]);
     }
   }
-  return {tags, setTags, findTag, updateTag, deleteTag, addTag};
+  const getTagName = (id: number) => {
+    return findTag(id).name;
+  };
+  return {tags, setTags, findTag, updateTag, deleteTag, addTag, getTagName};
 };
 export {useTags};
