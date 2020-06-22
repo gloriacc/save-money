@@ -1,6 +1,7 @@
 {
   "name": "save-money",
   "version": "0.1.0",
+  "homepage": "https://gloriacc.github.io/pig-money-website/",
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
