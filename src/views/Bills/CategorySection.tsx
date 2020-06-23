@@ -2,19 +2,25 @@ import styled from 'styled-components';
 import React, {useState} from 'react';
 
 const Wrapper = styled.section`
+  background-color: #A6E0C8;
   > ul {
     display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 48px;
    > li {
-    width: 50%;
-    font-size: 24px;
-    line-height: 64px;
+    width: 18%;
+    font-size: 18px;
+    line-height: 36px;
     text-align: center;
+    margin-right: 16px;
+    margin-left: 16px;
     &.selected::after {
       content: '';
       display: block;
       width: 100%;
-      height: 3px;
-      background: #333; 
+      height: 2px;
+      background: #19241C; 
     }
    }
   }

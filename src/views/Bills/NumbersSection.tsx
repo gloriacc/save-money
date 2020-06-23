@@ -40,21 +40,23 @@ const NumbersSection: React.FC<Props> = (props) => {
       <div className="output">
         {output}
       </div>
-      <div className="keyboard clearfix" onClick={onClickButtonWrapper}>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>删除</button>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>清空</button>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button className="ok">完成</button>
-        <button className="zero">0</button>
-        <button>.</button>
+      <div className="keyboard" onClick={onClickButtonWrapper}>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>今天</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>+</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>-</div>
+        <div>.</div>
+        <div className="zero">0</div>
+        <div>删除</div>
+        <div className="ok">完成</div>
       </div>
     </Wrapper>
   )

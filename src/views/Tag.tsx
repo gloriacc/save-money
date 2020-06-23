@@ -1,26 +1,11 @@
 import React from 'react';
 import {useTags} from '../hooks/useTags';
-import {useParams, useHistory} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import Layout from '../components/Layout';
-import Icon from '../components/Icon';
 import styled from 'styled-components';
 import {Button} from '../components/Button';
 import {Input} from '../components/Input';
-
-const Header = styled.header`
-  font-size: 16px;
-  line-height: 48px;
-  background: #FFF;
-  text-align: center;
-  > div {
-    position: absolute;
-    height: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 22px;
-  }
-`;
+import {Header} from '../components/Header';
 
 const InputWrapper = styled.div`
   background: #FFF;
@@ -41,18 +26,9 @@ const Tag: React.FC = () => {
   const {findTag, updateTag, deleteTag} = useTags();
   const {id} = useParams<Params>();
   const tag = findTag(parseInt(id));
-  const history = useHistory();
-  const onClickBack = () => {
-    history.goBack();
-  };
   return (
     <Layout>
-      <Header>
-        <div>
-          <Icon name="left" onClick={onClickBack}/>
-        </div>
-        <span>编辑标签</span>
-      </Header>
+      <Header>编辑标签</Header>
       {tag ?
         <div>
           <InputWrapper>

@@ -4,7 +4,7 @@ import React from 'react';
 import Icon from './Icon';
 
 const NavWrapper = styled.div`
-  background-color: #FFFFFF;
+  background-color: #A6E0C8;
   > ul {
     display: flex;
     > li {
@@ -17,16 +17,18 @@ const NavWrapper = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        color: #828282;
         .icon {
           width: 24px;
           height: 24px;
           padding: 0 0 4px 0;
+          fill: #828282;
         }
       }
       > a.selected {
-        color: red;
+        color: #19241C;
         .icon {
-          fill: red;
+          fill: #19241C;
         }
       }
     }
@@ -40,7 +42,7 @@ const Nav = () => {
         <li>
           <NavLink to="/tags" activeClassName="selected">
             <Icon name="tag"/>
-            标签
+            明细
           </NavLink>
         </li>
         <li>

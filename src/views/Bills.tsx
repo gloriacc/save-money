@@ -36,12 +36,13 @@ const Bills = () => {
   };
   return (
     <BillsLayout>
+      <CategorySection value={value.category}
+                       onChange={(category)=>onChange({category})}/>
       <TagsSection value={value.tagIds}
+                   category={value.category}
                    onChange={(tagIds)=>onChange({tagIds})}/>
       <RemarkSection value={value.remark}
                      onChange={(remark)=>onChange({remark})}/>
-      <CategorySection value={value.category}
-                       onChange={(category)=>onChange({category})}/>
       <NumbersSection value={value.amount}
                       onChange={(amount)=>onChange({amount})}
                       onOk={submit}/>
