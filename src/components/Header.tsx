@@ -6,7 +6,7 @@ import {useHistory} from 'react-router-dom';
 const HeaderWrapper = styled.header`
   font-size: 16px;
   line-height: 48px;
-  background: #A6E0C8;
+  //background: #A6E0C8;
   text-align: center;
   > div {
     position: absolute;
@@ -15,6 +15,11 @@ const HeaderWrapper = styled.header`
     justify-content: center;
     align-items: center;
     left: 22px;
+    > .icon {
+      fill: #A6E0C8;
+      width: 30px;
+      height: 30px;
+    }
   }
 `;
 const Header = (props: any) => {
@@ -25,7 +30,7 @@ const Header = (props: any) => {
   return (
     <HeaderWrapper>
       <div>
-        <Icon name="left" onClick={onClickBack}/>
+        <Icon name="back" onClick={onClickBack}/>
       </div>
       <span>{props.children}</span>
     </HeaderWrapper>

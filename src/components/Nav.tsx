@@ -40,8 +40,8 @@ const Nav = () => {
     <NavWrapper>
       <ul>
         <li>
-          <NavLink to="/tags" activeClassName="selected">
-            <Icon name="tag"/>
+          <NavLink to="/details" activeClassName="selected">
+            <Icon name="detail"/>
             明细
           </NavLink>
         </li>

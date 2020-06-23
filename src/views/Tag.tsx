@@ -1,47 +1,48 @@
 import React from 'react';
 import {useTags} from '../hooks/useTags';
 import {useParams} from 'react-router-dom';
-import Layout from '../components/Layout';
 import styled from 'styled-components';
-import {Button} from '../components/Button';
 import {Input} from '../components/Input';
 import {Header} from '../components/Header';
+import {TagsLayout} from '../components/TagsLayout';
 
 const InputWrapper = styled.div`
   background: #FFF;
-  margin-top: 8px;
-`;
-
-const ButtonWrapper = styled.div`
+  margin: 12px 16px;
+  border-radius: 18px;
+  border: 2px solid #19241C;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 32px 0;
+  flex-direction: column;
+  > p {
+    text-align: center;
+    color: #BEBEBE;
+    font-size: 14px;
+    line-height: 44px;
+  }
 `;
 
 type Params = {
   id: string
 }
 const Tag: React.FC = () => {
-  const {findTag, updateTag, deleteTag} = useTags();
+  const {findTag, updateTag} = useTags();
   const {id} = useParams<Params>();
   const tag = findTag(parseInt(id));
   return (
-    <Layout>
+    <TagsLayout>
       <Header>编辑标签</Header>
       {tag ?
         <div>
           <InputWrapper>
-            <Input label="标签名" type="text" placeholder="在这里添加标签名" value={tag.name}
+            <Input label="名称" type="text" placeholder="在这里添加标签名" value={tag.name}
                    onChange={(e)=> {updateTag(tag.id, {name: e.target.value});}}/>
+            <p>不超过4个汉字</p>
           </InputWrapper>
-          <ButtonWrapper>
-            <Button onClick={() => deleteTag(tag.id)}>删除标签</Button>
-          </ButtonWrapper>
+
         </div>
         :
         <div>tag 不存在</div>}
-    </Layout>
+    </TagsLayout>
   );
 }
 export {Tag};

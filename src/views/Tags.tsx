@@ -1,57 +1,70 @@
-import Layout from '../components/Layout';
 import React, {useState} from 'react';
 import {useTags} from '../hooks/useTags';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
-import {Button} from '../components/Button';
 import {CategorySection} from './Bills/CategorySection';
 import {Header} from '../components/Header';
+import Icon from '../components/Icon';
+import {TagsLayout} from '../components/TagsLayout';
 
 const TagList = styled.ul`
   background: #FFF;
   font-size: 16px;
   > li {
-    border-bottom: 1px solid #d5d5d9;
     line-height: 20px;
-    //margin-left: 16px;
-    > a {
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    .icon {
+      width: 18px;
+      height: 18px;
     }
+    > .otherButtons {
+      .icon {
+        margin-left: 8px;
+        &.edit {
+          fill: #97C4DB;
+        }
+        &.delete {
+          fill: #E88294;
+        }       
+      }
+    }
+    .addButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }  
   }
 `;
-// const Center = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 32px 0;
-// `;
 
 const Tags = () => {
-  const {tags, addTag} = useTags();
+  const {tags, deleteTag} = useTags();
   const [category, setCategory] = useState<'-'|'+'>('-');
   const tagsByCategory = tags.filter(t => t.category === category);
   return (
-    <div>
+    <TagsLayout link="/tags/add"
+                iconName="add"
+                buttonName="新建">
       <Header>管理标签</Header>
       <CategorySection value={category}
+                       type="mini"
                        onChange={value => setCategory(value)}/>
       <TagList>
-        <li onClick={()=>addTag(category)}>
-          <a>新建标签</a>
-        </li>
         {tagsByCategory.map((tag =>
-          <li key={tag.id}>
-            <Link to={'/tags/' + tag.id}>{tag.name}</Link>
-          </li>
+            <li key={tag.id}>
+              {tag.name}
+              <div className="otherButtons">
+                <Link to={'/tags/' + tag.id}>
+                  <Icon className="edit" name="edit"/>
+                </Link>
+                <Icon className="delete" name="delete" onClick={() => deleteTag(tag.id)}/>
+              </div>
+            </li>
         ))}
       </TagList>
-      {/*<Center>*/}
-      {/*  <Button onClick={addTag}>新建标签</Button>*/}
-      {/*</Center>*/}
-    </div>
+    </TagsLayout>
   );
 }
 

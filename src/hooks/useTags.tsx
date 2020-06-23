@@ -1,10 +1,12 @@
 import {useEffect, useState} from 'react';
 import {createId} from '../lib/createId';
 import {useUpdate} from './useUpdate';
+import {useHistory} from 'react-router-dom';
 
 const useTags = () => {
   const [tags, setTags] = useState<{ id: number, name: string, category: '-' | '+' }[]>([]);
-  useEffect(() => {
+  const history = useHistory();
+    useEffect(() => {
     let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
     if (localTags.length === 0) {
       localTags = [
@@ -27,12 +29,12 @@ const useTags = () => {
   const deleteTag = (id: number) => {
     setTags(tags.filter(tag => tag.id !== id));
   };
-  const addTag = (category: '-' | '+') => {
-    const newTagName = window.prompt('新标签名称为');
-    if (newTagName !== null) {
-      setTags([...tags, {id: createId(), name: newTagName, category: category}]);
+  const addTag = (tag:{name: string, category: '-' | '+'}) => {
+    if (tag.name !== null && tag.name !== '') {
+      setTags([...tags, {id: createId(), ...tag}]);
+      history.goBack();
     }
-  }
+  };
   const getTagName = (id: number) => {
     return findTag(id).name;
   };
