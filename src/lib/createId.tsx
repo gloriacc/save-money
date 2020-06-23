@@ -1,8 +1,8 @@
-let idString = window.localStorage.getItem('id');
-let id = idString ? parseInt(idString) : 0;
-const createId = () => {
+const createId = (fieldName: string) => {
+  const idString = window.localStorage.getItem(fieldName);
+  let id = idString ? parseInt(idString) : 0;
   id++;
-  window.localStorage.setItem('id', id.toString());
+  window.localStorage.setItem(fieldName, id.toString());
   return id;
 }
 export {createId};

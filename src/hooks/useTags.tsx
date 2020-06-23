@@ -6,16 +6,16 @@ import {useHistory} from 'react-router-dom';
 const useTags = () => {
   const [tags, setTags] = useState<{ id: number, name: string, category: '-' | '+' }[]>([]);
   const history = useHistory();
-    useEffect(() => {
+  useEffect(() => {
     let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
     if (localTags.length === 0) {
       localTags = [
-        {id: createId(), name: '衣', category: '-'},
-        {id: createId(), name: '食', category: '-'},
-        {id: createId(), name: '住', category: '-'},
-        {id: createId(), name: '行', category: '-'},
-        {id: createId(), name: '工资', category: '+'},
-        {id: createId(), name: '红包', category: '+'},
+        {id: createId('tagId'), name: '衣', category: '-'},
+        {id: createId('tagId'), name: '食', category: '-'},
+        {id: createId('tagId'), name: '住', category: '-'},
+        {id: createId('tagId'), name: '行', category: '-'},
+        {id: createId('tagId'), name: '工资', category: '+'},
+        {id: createId('tagId'), name: '红包', category: '+'},
       ]
     }
     setTags(localTags);
@@ -31,7 +31,7 @@ const useTags = () => {
   };
   const addTag = (tag:{name: string, category: '-' | '+'}) => {
     if (tag.name !== null && tag.name !== '') {
-      setTags([...tags, {id: createId(), ...tag}]);
+      setTags([...tags, {id: createId('tagId'), ...tag}]);
       history.goBack();
     }
   };

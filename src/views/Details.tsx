@@ -5,15 +5,13 @@ import styled from 'styled-components';
 import {BillRecord, useBillRecords} from '../hooks/useBillRecords';
 import day from 'dayjs';
 import {useTags} from '../hooks/useTags';
+import Icon from '../components/Icon';
+import {Link} from 'react-router-dom';
 
-const CategoryWrapper = styled.div`
-  background: #FFF;
-`;
 const Item = styled.div`
   display: flex;
   justify-content: space-between;
   background: #FFF;
-  font-size: 18px;
   line-height: 20px;
   padding: 10px 16px;
   > .remark {
@@ -21,20 +19,36 @@ const Item = styled.div`
     color: #999;
     font-size: 14px;
   }
+  .icon {
+    margin-left: 8px;
+    width: 18px;
+    height: 18px;
+    &.edit {
+      fill: #97C4DB;
+    }
+    &.delete {
+      fill: #E88294;
+    }       
+  }
 `;
 const Header = styled.header`
-  font-size: 18px;
-  line-height: 20px;
+  font-size: 14px;
+  line-height: 18px;
   padding: 10px 16px;
+  > div {
+    display: inline-block;
+    border-bottom: 1px solid #A6E0C8;
+  }
+  
 `;
 const Details = () => {
   const [category, setCategory] = useState<'-'|'+'>('-');
-  const {billRecords} = useBillRecords();
+  const {billRecords, deleteBillRecord} = useBillRecords();
   const {getTagName} = useTags();
   const hash: {[k: string]: BillRecord[]} = {};
   const billRecordsByCategory = billRecords.filter(br => br.category === category);
   billRecordsByCategory.forEach(br => {
-    const key = day (br.createdDate).format('YYYY-MM-DD');
+    const key = day (br.createdDate).format('YYYY.MM.DD');
     if (!(key in hash)) {
       hash[key] = [];
     }
@@ -48,12 +62,10 @@ const Details = () => {
   });
   return (
     <Layout>
-      <CategoryWrapper>
-        <CategorySection value={category} onChange={value => setCategory(value)}/>
-      </CategoryWrapper>
+      <CategorySection value={category} onChange={value => setCategory(value)}/>
       {sortedBillRecords.map(([date, brs]) => <div key={date}>
         <Header>
-          {date}
+          <div>{date}</div>
         </Header>
         <div>
           {brs.map(br => {
@@ -64,6 +76,10 @@ const Details = () => {
               }
               <div className="remark">{br.remark ? br.remark : ''}</div>
               <div>￥{br.amount}</div>
+              <Link to={'/bills/' + br.id}>
+                <Icon className="edit" name="edit"/>
+              </Link>
+              <Icon className="delete" name="delete" onClick={() => deleteBillRecord(br.id)}/>
             </Item>
           })}
         </div>

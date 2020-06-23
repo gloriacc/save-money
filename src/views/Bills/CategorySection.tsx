@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 import React, {useState} from 'react';
+import Icon from '../../components/Icon';
+import {useHistory} from 'react-router-dom';
 
 const Wrapper = styled.section`
+  > .back {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 22px;
+    top: 9px;
+  }
   > ul {
     &.default {
       display: flex;
@@ -45,14 +54,20 @@ const Wrapper = styled.section`
 type Props = {
   value: '-' | '+',
   type?: 'default' | 'mini',
-  onChange: (value: '-' | '+')=>void
+  onChange: (value: '-' | '+')=>void,
+  backEnabled?: boolean
 }
 const CategorySection: React.FC<Props> = (props) => {
   const map = {'-': '支出', '+': '收入'};
   const [list] = useState<('+'|'-')[]>(['-', '+']);
   const category = props.value;
+  const history = useHistory();
+  const onClickBack = () => {
+    history.goBack();
+  };
   return (
     <Wrapper>
+      {props.backEnabled && <Icon className="back" name="back" onClick={onClickBack}/>}
       <ul className={props.type || 'default'}>
         {list.map(c =>
           <li

@@ -34,6 +34,9 @@ function App() {
         <Route exact path="/bills">
           <Bills />
         </Route>
+        <Route exact path="/bills/:id">
+          <Bills />
+        </Route>
         <Route exact path="/statistics">
           <Statistics />
         </Route>

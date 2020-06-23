@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Wrapper} from './NumbersSection/Wrapper';
 import {calcOutput} from './NumbersSection/calcOutput';
 
@@ -10,6 +10,9 @@ type Props = {
 
 const NumbersSection: React.FC<Props> = (props) => {
   const [output, _setOutput] = useState(props.value.toString());
+  useEffect(() => {
+    _setOutput(props.value.toString());
+  }, [props.value]);
   const setOutput = (output: string) => {
     let amount: string;
     if (output.length > 16) {
