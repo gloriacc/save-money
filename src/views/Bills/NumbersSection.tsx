@@ -87,7 +87,7 @@ const NumbersSection: React.FC<Props> = (props) => {
         <div className="backspace"><Icon name="backspace"/></div>
         <div className="ok">完成</div>
       </div>
-      <MyCalendar status={calendar} onChange={c => setCalendar(c)} date={date} onDateChange={(d) => setDate(d)}/>
+      <MyCalendar status={calendar} onCalendarChange={c => setCalendar(c)} date={date} onDateChange={(d) => setDate(d)}/>
     </Wrapper>
   )
 }

@@ -7,6 +7,7 @@ import day from 'dayjs';
 import {useTags} from '../hooks/useTags';
 import Icon from '../components/Icon';
 import {Link} from 'react-router-dom';
+import {MonthSelection} from '../components/MonthSelection';
 
 const Item = styled.div`
   display: flex;
@@ -39,15 +40,18 @@ const Header = styled.header`
     display: inline-block;
     border-bottom: 1px solid #A6E0C8;
   }
-  
 `;
+
+
 const Details = () => {
   const [category, setCategory] = useState<'-'|'+'>('-');
   const {billRecords, deleteBillRecord} = useBillRecords();
+  const [curDate, setCurDate] = useState<Date|Date[]>(new Date());
   const {getTagName} = useTags();
   const hash: {[k: string]: BillRecord[]} = {};
-  const billRecordsByCategory = billRecords.filter(br => br.category === category);
-  billRecordsByCategory.forEach(br => {
+  const billRecordsBySelected = billRecords.filter(br => br.category === category
+    && day(br.createdDate).month() === day(curDate instanceof Array ? curDate[0] : curDate).month());
+  billRecordsBySelected.forEach(br => {
     const key = day (br.createdDate).format('YYYY.MM.DD');
     if (!(key in hash)) {
       hash[key] = [];
@@ -60,9 +64,11 @@ const Details = () => {
     if (a[0] < b[0]) return 1;
     return 0
   });
+
   return (
     <Layout>
       <CategorySection value={category} onChange={value => setCategory(value)}/>
+      <MonthSelection value={curDate} onChange={value => setCurDate(value)}/>
       {sortedBillRecords.map(([date, brs]) => <div key={date}>
         <Header>
           <div>{date}</div>

@@ -29,21 +29,24 @@ const CalendarWrapper = styled.div`
 type Props = {
   status: boolean,
   date: Date | Date[],
-  onChange: (status: boolean)=>void,
-  onDateChange: (date: Date | Date[])=>void
+  onCalendarChange: (status: boolean)=>void,
+  onDateChange: (date: Date | Date[])=>void,
+  maxDetail?: "month" | "year" | "decade" | "century" | undefined
 }
 const MyCalendar:React.FC<Props> = (props) => {
   const [date, setDate] = useState<Date | Date[]>(new Date());
   return (
     <CalendarWrapper className={props.status?'show':''}>
-      <div className="shadow" onClick={()=> props.onChange(false)}>
+      <div className="shadow" onClick={()=> props.onCalendarChange(false)}>
 
       </div>
       <Calendar
         onChange={(value) => {
           setDate(value);
           props.onDateChange(value);
+          props.onCalendarChange(false);
         }}
+        maxDetail={props.maxDetail}
         value={props.date}
         calendarType="ISO 8601"
       />
