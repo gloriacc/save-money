@@ -40,7 +40,8 @@ const useBillRecords = () => {
   const deleteBillRecord = (id: number) => {
     setBillRecords(billRecords.filter(billRecord => billRecord.id !== id));
   };
-  const updateBillRecord = () => {
+  const updateBillRecord = (id:number, billRecord:newBillRecord) => {
+    setBillRecords(billRecords.map(br => br.id === id ? {...billRecord, id} : br));
     return true;
   };
   return {billRecords, addBillRecord, findBillRecord, deleteBillRecord, updateBillRecord};

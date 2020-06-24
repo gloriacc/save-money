@@ -1,10 +1,10 @@
 import Layout from '../components/Layout';
-import React, {ReactNode, useState} from 'react';
+import React, {useState} from 'react';
 import {CategorySection} from './Bills/CategorySection';
 import styled from 'styled-components';
 import {BillRecord, useBillRecords} from '../hooks/useBillRecords';
 import day from 'dayjs';
-import {useTags} from '../hooks/useTags';
+// import {useTags} from '../hooks/useTags';
 
 const PanelWrapper = styled.div`
   background: #FFF;
@@ -28,7 +28,7 @@ const PanelWrapper = styled.div`
 const Statistics = () => {
   const [category, setCategory] = useState<'-'|'+'>('-');
   const {billRecords} = useBillRecords();
-  const {getTagName} = useTags();
+  // const {getTagName} = useTags();
   const hash: {[k: string]: BillRecord[]} = {};
   const billRecordsByCategory = billRecords.filter(br => br.category === category);
   billRecordsByCategory.forEach(br => {
@@ -38,12 +38,12 @@ const Statistics = () => {
     }
     hash[key].push(br);
   })
-  const sortedBillRecords = Object.entries(hash).sort((a, b) => {
-    if (a[0] === b[0]) return 0;
-    if (a[0] > b[0]) return -1;
-    if (a[0] < b[0]) return 1;
-    return 0
-  });
+  // const sortedBillRecords = Object.entries(hash).sort((a, b) => {
+  //   if (a[0] === b[0]) return 0;
+  //   if (a[0] > b[0]) return -1;
+  //   if (a[0] < b[0]) return 1;
+  //   return 0
+  // });
   return (
     <Layout>
       <CategorySection value={category} onChange={value => setCategory(value)}/>

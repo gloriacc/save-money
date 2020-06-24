@@ -1,5 +1,5 @@
 import Calendar from 'react-calendar';
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import 'react-calendar/dist/Calendar.css';
 
@@ -23,6 +23,13 @@ const CalendarWrapper = styled.div`
   > .react-calendar {
     width: 100%;
     border: none;
+    .react-calendar__tile--active {
+      background-color: #A6E0C8;
+    }
+    .react-calendar__tile--now {
+      background-color: #E88294;
+      color: #FFF;
+    }
   }
 `;
 
@@ -34,7 +41,6 @@ type Props = {
   maxDetail?: "month" | "year" | "decade" | "century" | undefined
 }
 const MyCalendar:React.FC<Props> = (props) => {
-  const [date, setDate] = useState<Date | Date[]>(new Date());
   return (
     <CalendarWrapper className={props.status?'show':''}>
       <div className="shadow" onClick={()=> props.onCalendarChange(false)}>
@@ -42,7 +48,6 @@ const MyCalendar:React.FC<Props> = (props) => {
       </div>
       <Calendar
         onChange={(value) => {
-          setDate(value);
           props.onDateChange(value);
           props.onCalendarChange(false);
         }}

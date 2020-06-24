@@ -49,7 +49,7 @@ const Bills = () => {
     }
   };
   const update = () => {
-    if (updateBillRecord()) {
+    if (updateBillRecord(curBillRecord.id, value)) {
       alert('修改成功');
       history.goBack();
     }

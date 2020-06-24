@@ -14,14 +14,15 @@ type Props = {
 }
 
 const NumbersSection: React.FC<Props> = (props) => {
-  const [output, _setOutput] = useState(props.value.toString());
+  const {value, date, onDateChange} = props;
+  const [output, _setOutput] = useState(value.toString());
   const [calendar, setCalendar] = useState(false);
-  const [date, setDate] = useState<Date|Date[]>(new Date(props.date));
+  const [curDate, setCurDate] = useState<Date|Date[]>(new Date(date));
 
   useEffect(() => {
-    _setOutput(props.value.toString());
-    setDate(new Date(props.date));
-  }, [props.value, props.date]);
+    _setOutput(value.toString());
+    setCurDate(new Date(date));
+  }, [value, date]);
   const setOutput = (output: string) => {
     let amount: string;
     if (output.length > 16) {
@@ -58,13 +59,14 @@ const NumbersSection: React.FC<Props> = (props) => {
       return '今天';
     }
   }
-  const [miniDate, setMiniDate] = useState(calcMiniDate(new Date(props.date)));
+  const [miniDate, setMiniDate] = useState(calcMiniDate(new Date(date)));
+
   useEffect(() => {
-    if (!(date instanceof Array)) {
-      props.onDateChange(new Date(date).toISOString());
-      setMiniDate(calcMiniDate(date));
+    if (!(curDate instanceof Array)) {
+      onDateChange(new Date(curDate).toISOString());
+      setMiniDate(calcMiniDate(curDate));
     }
-  }, [date])
+  }, [curDate])
 
   return (
     <Wrapper>
@@ -87,7 +89,7 @@ const NumbersSection: React.FC<Props> = (props) => {
         <div className="backspace"><Icon name="backspace"/></div>
         <div className="ok">完成</div>
       </div>
-      <MyCalendar status={calendar} onCalendarChange={c => setCalendar(c)} date={date} onDateChange={(d) => setDate(d)}/>
+      <MyCalendar status={calendar} onCalendarChange={c => setCalendar(c)} date={curDate} onDateChange={(d) => setCurDate(d)}/>
     </Wrapper>
   )
 }

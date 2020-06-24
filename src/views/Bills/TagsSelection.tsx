@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import {useTags} from '../../hooks/useTags';
-import Icon from '../../components/Icon';
 import {NavLink} from 'react-router-dom';
 
 const Wrapper = styled.section`
