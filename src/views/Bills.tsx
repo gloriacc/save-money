@@ -9,7 +9,6 @@ import {useBillRecords} from '../hooks/useBillRecords';
 import {useParams} from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 
-
 const BillsLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
@@ -21,7 +20,8 @@ const defaultBillRecord = {
   tagIds: [] as number[],
   remark: '',
   category: '-' as Category,
-  amount: 0
+  amount: 0,
+  createdDate: (new Date()).toISOString()
 }
 
 type Params = {
@@ -54,6 +54,7 @@ const Bills = () => {
       history.goBack();
     }
   };
+
   return (
     <BillsLayout>
       <CategorySection value={value.category}
@@ -65,8 +66,10 @@ const Bills = () => {
       <RemarkSection value={value.remark}
                      onChange={(remark)=>onChange({remark})}/>
       <NumbersSection value={value.amount}
-                          onChange={(amount)=>onChange({amount})}
-                          onOk={curBillRecord ? update : submit}/>
+                      onChange={(amount)=>onChange({amount})}
+                      date={value.createdDate}
+                      onDateChange={(createdDate)=>onChange({createdDate})}
+                      onOk={curBillRecord ? update : submit}/>
     </BillsLayout>
   );
 }

@@ -21,14 +21,16 @@ const calcOutput = (text: string, output: string) => {
         return output + text;
       }
       return output;
+    case '+':
+      return output;
+    case '-':
+      return output;
     case '删除':
       if (output.length <= 1) {
         return '';
       } else {
         return output.slice(0, -1);
       }
-    case '清空':
-      return '';
     default:
       return output;
   }

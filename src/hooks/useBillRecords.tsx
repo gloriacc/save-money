@@ -11,12 +11,11 @@ export type BillRecord = {
   createdDate: string
 }
 
-type newBillRecord = Omit<BillRecord, 'createdDate'|'id' >;
+type newBillRecord = Omit<BillRecord, 'id' >;
 
 const useBillRecords = () => {
   const [billRecords, setBillRecords] = useState<BillRecord[]>([])
   useEffect(() => {
-
     setBillRecords(JSON.parse(window.localStorage.getItem('billRecords') || '[]'));
   }, []);
   const addBillRecord = (billRecord: newBillRecord) => {
@@ -28,7 +27,7 @@ const useBillRecords = () => {
       alert('请选择标签');
       return false;
     }
-    const thisBillRecord = {...billRecord, createdDate: (new Date()).toISOString(), id: createId('billId')};
+    const thisBillRecord = {...billRecord, id: createId('billId')};
     setBillRecords([...billRecords, thisBillRecord]);
     return true;
   };

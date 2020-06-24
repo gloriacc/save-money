@@ -6,27 +6,25 @@ import {BillRecord, useBillRecords} from '../hooks/useBillRecords';
 import day from 'dayjs';
 import {useTags} from '../hooks/useTags';
 
-const CategoryWrapper = styled.div`
+const PanelWrapper = styled.div`
   background: #FFF;
-`;
-const Item = styled.div`
+  margin: 12px 16px;
+  border-radius: 18px;
+  border: 2px solid #19241C;
   display: flex;
-  justify-content: space-between;
-  background: #FFF;
-  font-size: 18px;
-  line-height: 20px;
-  padding: 10px 16px;
-  > .remark {
-    margin: 0 auto 0 16px;
-    color: #999;
-    font-size: 14px;
+  flex-direction: column;
+  padding: 12px 16px;
+  > .title {
+    padding-bottom: 12px;
+    border-bottom: 2px solid #19241C;
+  }
+  > .surplus {
+    font-size: 24px;
+    color: #E88294;
+    line-height: 48px;
   }
 `;
-const Header = styled.header`
-  font-size: 18px;
-  line-height: 20px;
-  padding: 10px 16px;
-`;
+
 const Statistics = () => {
   const [category, setCategory] = useState<'-'|'+'>('-');
   const {billRecords} = useBillRecords();
@@ -48,29 +46,26 @@ const Statistics = () => {
   });
   return (
     <Layout>
-      <CategoryWrapper>
-        <CategorySection value={category} onChange={value => setCategory(value)}/>
-      </CategoryWrapper>
-      {sortedBillRecords.map(([date, brs]) => <div key={date}>
-        <Header>
-          {date}
-        </Header>
-        <div>
-          {brs.map(br => {
-            return <Item key={Math.random()}>
-              {br.tagIds
-                .map(tagId => <span key={tagId}>{getTagName(tagId)}</span>)
-                .reduce((result, span, index, array) => result.concat(index < array.length - 1 ? [span, '，'] : [span]), [] as ReactNode[])
-              }
-              <div className="remark">{br.remark ? br.remark : ''}</div>
-              <div>￥{br.amount}</div>
-            </Item>
-          })}
-        </div>
-      </div>)}
-      <div>
-
-      </div>
+      <CategorySection value={category} onChange={value => setCategory(value)}/>
+      <PanelWrapper>
+        <div className="title">结余</div>
+        <div className="surplus">￥980</div>
+        <ul>
+          <li>支出</li>
+          <li>收入</li>
+        </ul>
+      </PanelWrapper>
+      <PanelWrapper>
+        <div className="title">趋势</div>
+        <ul>
+          <li>单日最高支出</li>
+          <li>平均每日支出</li>
+          <li>累计支出笔数</li>
+        </ul>
+      </PanelWrapper>
+      <PanelWrapper>
+        <div className="title">占比</div>
+      </PanelWrapper>
     </Layout>
   );
 }
