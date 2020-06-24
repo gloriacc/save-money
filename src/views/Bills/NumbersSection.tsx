@@ -3,6 +3,7 @@ import {Wrapper} from './NumbersSection/Wrapper';
 import {calcOutput} from './NumbersSection/calcOutput';
 import {MyCalendar} from '../../components/MyCalendar';
 import day from 'dayjs';
+import Icon from '../../components/Icon';
 
 type Props = {
   value: number,
@@ -42,7 +43,10 @@ const NumbersSection: React.FC<Props> = (props) => {
       props.onOk();
       return;
     }
-    if ('0123456789.+-'.split('').concat(['删除']).indexOf(text)>=0) {
+    if (text === '') {
+      setOutput(calcOutput('删除', output));
+    }
+    if ('0123456789.'.split('').indexOf(text)>=0) {
       setOutput(calcOutput(text, output));
     }
   }
@@ -65,24 +69,22 @@ const NumbersSection: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <div className="output">
-        {output}
+        <div className="date" onClick={()=>setCalendar(true)}>{miniDate}</div>
+        <div className="price">{output}</div>
       </div>
       <div className="keyboard" onClick={onClickButtonWrapper}>
         <div>7</div>
         <div>8</div>
         <div>9</div>
-        <div onClick={()=>setCalendar(true)}>{miniDate}</div>
+        <div>.</div>
         <div>4</div>
         <div>5</div>
         <div>6</div>
-        <div>+</div>
+        <div>0</div>
         <div>1</div>
         <div>2</div>
         <div>3</div>
-        <div>-</div>
-        <div>.</div>
-        <div>0</div>
-        <div>删除</div>
+        <div className="backspace"><Icon name="backspace"/></div>
         <div className="ok">完成</div>
       </div>
       <MyCalendar status={calendar} onChange={c => setCalendar(c)} date={date} onDateChange={(d) => setDate(d)}/>

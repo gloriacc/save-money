@@ -21,10 +21,6 @@ const calcOutput = (text: string, output: string) => {
         return output + text;
       }
       return output;
-    case '+':
-      return output;
-    case '-':
-      return output;
     case '删除':
       if (output.length <= 1) {
         return '';
