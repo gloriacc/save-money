@@ -28,6 +28,7 @@ const CalendarWrapper = styled.div`
 
 type Props = {
   status: boolean,
+  date: Date | Date[],
   onChange: (status: boolean)=>void,
   onDateChange: (date: Date | Date[])=>void
 }
@@ -43,7 +44,7 @@ const MyCalendar:React.FC<Props> = (props) => {
           setDate(value);
           props.onDateChange(value);
         }}
-        value={date}
+        value={props.date}
         calendarType="ISO 8601"
       />
     </CalendarWrapper>

@@ -16,9 +16,11 @@ const NumbersSection: React.FC<Props> = (props) => {
   const [output, _setOutput] = useState(props.value.toString());
   const [calendar, setCalendar] = useState(false);
   const [date, setDate] = useState<Date|Date[]>(new Date(props.date));
+
   useEffect(() => {
     _setOutput(props.value.toString());
-  }, [props.value]);
+    setDate(new Date(props.date));
+  }, [props.value, props.date]);
   const setOutput = (output: string) => {
     let amount: string;
     if (output.length > 16) {
@@ -44,15 +46,19 @@ const NumbersSection: React.FC<Props> = (props) => {
       setOutput(calcOutput(text, output));
     }
   }
-  const [miniDate, setMiniDate] = useState('今天');
+
+  const calcMiniDate = (date:Date) => {
+    if (day(date).format('YYYY.MM.DD') !== day((new Date()).toISOString()).format('YYYY.MM.DD')) {
+       return day(date).format('MM.DD');
+    } else {
+      return '今天';
+    }
+  }
+  const [miniDate, setMiniDate] = useState(calcMiniDate(new Date(props.date)));
   useEffect(() => {
     if (!(date instanceof Array)) {
       props.onDateChange(new Date(date).toISOString());
-      if (day(date).format('YYYY.MM.DD') !== day((new Date()).toISOString()).format('YYYY.MM.DD')) {
-        setMiniDate(day(date).format('MM.DD'));
-      } else {
-        setMiniDate('今天');
-      }
+      setMiniDate(calcMiniDate(date));
     }
   }, [date])
 
@@ -79,7 +85,7 @@ const NumbersSection: React.FC<Props> = (props) => {
         <div>删除</div>
         <div className="ok">完成</div>
       </div>
-      <MyCalendar status={calendar} onChange={c => setCalendar(c)} onDateChange={(d) => setDate(d)}/>
+      <MyCalendar status={calendar} onChange={c => setCalendar(c)} date={date} onDateChange={(d) => setDate(d)}/>
     </Wrapper>
   )
 }
