@@ -4,6 +4,7 @@ import Icon from '../../components/Icon';
 import {useHistory} from 'react-router-dom';
 
 const Wrapper = styled.section`
+  flex-shrink: 0;
   > .back {
     position: absolute;
     width: 30px;

@@ -4,6 +4,7 @@ import {Input} from '../../components/Input';
 
 const Wrapper = styled.section`
   padding: 8px 0;
+  flex-shrink: 0;
 `;
 
 type Props = {

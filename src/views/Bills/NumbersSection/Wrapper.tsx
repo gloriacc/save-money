@@ -6,6 +6,7 @@ const Wrapper = styled.section`
   border-top: 1px solid #19241C;
   background-color: #A6E0C8;
   padding: 12px 16px;
+  flex-shrink: 0;
   .output {
     display: flex;
     justify-content: space-between;

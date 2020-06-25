@@ -11,7 +11,7 @@ export type BillRecord = {
   createdDate: string
 }
 
-type newBillRecord = Omit<BillRecord, 'id' >;
+type newBillRecord = Omit<BillRecord, 'id'>;
 
 const useBillRecords = () => {
   const [billRecords, setBillRecords] = useState<BillRecord[]>([])

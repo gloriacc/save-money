@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components';
 import {useTags} from '../../hooks/useTags';
 import {NavLink} from 'react-router-dom';
@@ -11,6 +11,9 @@ const Wrapper = styled.section`
   flex-direction: column;
   //justify-content: flex-end;
   align-items: flex-start;
+  //height: ${props => props.theme.height};
+  overflow: auto;
+  flex-shrink: 1;
   > ul {
     color: #484848;
     width: 100%;
@@ -18,7 +21,7 @@ const Wrapper = styled.section`
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
-    > li {   
+    > li {
       width: 25%;
       display: flex;
       justify-content: center;
@@ -36,7 +39,7 @@ const Wrapper = styled.section`
         &.selected {
           border: 2px solid #A6E0C8;
         }
-      }      
+      }
     }
   }
   > button {
@@ -50,6 +53,11 @@ const Wrapper = styled.section`
     padding: 0 4px;
   }
 `;
+// Wrapper.defaultProps = {
+//   theme: {
+//     height: 'auto'
+//   }
+// }
 
 type Props = {
   value: number[],
@@ -61,7 +69,7 @@ const TagsSection: React.FC<Props> = (props) => {
   const {tags} = useTags();
   const tagsByCategory = tags.filter(t => t.category === props.category);
   const selectedTagIds = props.value;
-
+  // const [height, setHeight] = useState<string>('auto');
   const onToggleTag = (tagId: number) => {
     const index = selectedTagIds.indexOf(tagId);
     if (index >= 0) {
@@ -70,6 +78,13 @@ const TagsSection: React.FC<Props> = (props) => {
       props.onChange([...selectedTagIds, tagId]);
     }
   }
+  // useEffect(()=>{
+  //   console.log(window.innerHeight);
+  //   console.log(document.body.clientHeight);
+  //   console.log(document.documentElement.clientHeight);
+  //   setHeight(document.body.clientHeight - window.innerHeight > 0 ? (window.innerHeight - 48 - 60 - 289 - 54) + 'px' : 'auto')
+  // },[])
+
   return (
     <Wrapper>
       <ul>
