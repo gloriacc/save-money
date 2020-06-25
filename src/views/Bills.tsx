@@ -9,11 +9,6 @@ import {useBillRecords} from '../hooks/useBillRecords';
 import {useParams} from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 
-const BillsLayout = styled(Layout)`
-  display: flex;
-  flex-direction: column;
-`;
-
 type Category = '-' | '+';
 
 const defaultBillRecord = {
@@ -56,7 +51,7 @@ const Bills = () => {
   };
 
   return (
-    <BillsLayout>
+    <Layout>
       <CategorySection value={value.category}
                        backEnabled={!!curBillRecord}
                        onChange={(category)=>onChange({category})}/>
@@ -70,7 +65,7 @@ const Bills = () => {
                       date={value.createdDate}
                       onDateChange={(createdDate)=>onChange({createdDate})}
                       onOk={curBillRecord ? update : submit}/>
-    </BillsLayout>
+    </Layout>
   );
 }
 export default Bills;

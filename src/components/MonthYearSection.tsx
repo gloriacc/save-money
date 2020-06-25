@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   > .icon {
     width: 24px;
     height: 24px;
@@ -22,7 +23,7 @@ type Props = {
   onChange: (date: Date | Date[]) => void
 }
 
-const MonthSelection:React.FC<Props> = (props) => {
+const MonthYearSection:React.FC<Props> = (props) => {
   const [calendar, setCalendar] = useState(false);
   const [date, setDate] = useState<Date|Date[]>(new Date());
 
@@ -36,4 +37,4 @@ const MonthSelection:React.FC<Props> = (props) => {
     </div>
   )
 };
-export {MonthSelection};
+export {MonthYearSection};

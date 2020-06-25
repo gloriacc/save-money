@@ -8,6 +8,7 @@ const HeaderWrapper = styled.header`
   line-height: 48px;
   //background: #A6E0C8;
   text-align: center;
+  flex-shrink: 0;
   > div {
     position: absolute;
     height: 48px;

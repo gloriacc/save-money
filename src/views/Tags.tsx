@@ -9,6 +9,9 @@ import {TagsLayout} from '../components/TagsLayout';
 
 const TagList = styled.ul`
   background: #FFF;
+  flex-grow: 1;
+  overflow: auto;
+  flex-shrink: 1;
   > li {
     line-height: 20px;
     display: flex;
