@@ -4,7 +4,7 @@ import {useTags} from '../../hooks/useTags';
 import {NavLink} from 'react-router-dom';
 
 const Wrapper = styled.section`
-  background-color: #FFF;
+  //background-color: #FFF;
   padding: 22px 16px;
   flex-grow: 1;
   display: flex;

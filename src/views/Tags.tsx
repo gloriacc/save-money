@@ -8,7 +8,7 @@ import Icon from '../components/Icon';
 import {TagsLayout} from '../components/TagsLayout';
 
 const TagList = styled.ul`
-  background: #FFF;
+  //background: #FFF;
   flex-grow: 1;
   overflow: auto;
   flex-shrink: 1;
