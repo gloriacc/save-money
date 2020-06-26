@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 import React, {useState} from 'react';
 import {CategorySection} from './Bills/CategorySection';
 import {TagListSection} from './Detail/TagListSection';
-import {MonthYearSection} from '../components/MonthYearSection';
+import {MonthYearSection} from './Detail/MonthYearSection';
 
 const Details = () => {
   const [category, setCategory] = useState<'-'|'+'>('-');

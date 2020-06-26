@@ -1,7 +1,7 @@
-import Icon from './Icon';
+import Icon from '../../components/Icon';
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {MyCalendar} from './MyCalendar';
+import {MyCalendar} from '../../components/MyCalendar';
 import day from 'dayjs';
 
 const Wrapper = styled.div`

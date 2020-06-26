@@ -1,4 +1,4 @@
-import {MonthYearSection} from '../../components/MonthYearSection';
+import {MonthYearSection} from './MonthYearSection';
 import React, {ReactNode, useState} from 'react';
 import {Link} from 'react-router-dom';
 import Icon from '../../components/Icon';
